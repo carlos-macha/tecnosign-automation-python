@@ -1,0 +1,81 @@
+# ---------------------
+# PYTHON
+# ---------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# ---------------------
+# PYCHARM / JETBRAINS
+# ---------------------
+.idea/
+#.idea/*  # (pode permitir exceptions se desejar)
+
+# ---------------------
+# LOGS / TEMP
+# ---------------------
+*.log
+*.tmp
+*.temp
+*.cache/
+.cache/
+pytest_cache/
+coverage.xml
+htmlcov/
+
+# ---------------------
+# SENSÍVEIS
+# ---------------------
+*.env
+.env.*
+*.key
+*.pem
+*.crt
+*.p12
+config.json
+secrets.json
+
+# ---------------------
+# PLAYWRIGHT / AUTOMATION
+# ---------------------
+playwright/.cache/
+test-results/
+playwright-report/
+screenshots/
+videos/
+trace.zip
+
+# ---------------------
+# DOCKER (se usar)
+# ---------------------
+docker-data/
+.docker/
+
+# ---------------------
+# SISTEMA OPERACIONAL
+# ---------------------
+# Windows
+Thumbs.db
+desktop.ini
+
+# macOS
+.DS_Store
+
+# ---------------------
+# SQLITE (caso use local)
+# ---------------------
+*.db
+*.sqlite3
