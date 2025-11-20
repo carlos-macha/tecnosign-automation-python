@@ -13,7 +13,7 @@ build/
 pip-wheel-metadata/
 
 # Virtual Environments
-.venv/
+../../.venv/
 venv/
 ENV/
 env/
@@ -21,7 +21,7 @@ env/
 # ---------------------
 # PYCHARM / JETBRAINS
 # ---------------------
-.idea/
+../.idea/
 #.idea/*  # (pode permitir exceptions se desejar)
 
 # ---------------------
