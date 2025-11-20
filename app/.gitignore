@@ -80,5 +80,5 @@ desktop.ini
 *.db
 *.sqlite3
 
-.ida/
+.idea/
 
