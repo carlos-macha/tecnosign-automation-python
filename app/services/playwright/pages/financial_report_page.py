@@ -1,8 +1,12 @@
 from playwright.async_api import Page
+from app.api.schema.customer_schema import Customer
 
 class FinancialReportPage:
     def __init__(self, page: Page):
         self.page = page
+
+    async def reload_page(self):
+        await self.page.reload()
 
     async def click_group(self, group_name: str):
         await self.page.locator("div.v-list-item-title", has_text=group_name).click()
@@ -11,3 +15,33 @@ class FinancialReportPage:
         item = self.page.locator("div.v-list-item-title", has_text=item_name)
         await item.wait_for(state="visible")
         await item.click()
+
+    async def identification_input(self, identification_code: str):
+        await self.page.locator("#input-v-16").fill(identification_code)
+
+    async def click_check_button(self):
+        await self.page.locator("span:has-text('Consultar') >> ..").click()
+
+    async def click_add_button(self):
+        await self.page.locator(
+            "i.fas.fa-plus-square.v-icon.notranslate.v-theme--light.v-icon--size-default.v-icon--clickable.cor-sistema--text"
+        ).nth(-1).click()
+
+    async def sale_details(self):
+        card = self.page.locator("div.v-row:has-text('Detalhes da Venda')")
+        await card.locator("i.fas.fa-info-circle").click()
+
+    async def customer_data(self, customer: Customer):
+        customer.name = await self.page.locator("#input-v-53").input_value()
+        customer.cnpj = await self.page.locator("#input-v-51").input_value()
+        customer.soluti_request = await self.page.locator("#input-v-63").input_value()
+        customer.partner = await self.page.locator("#input-v-59").input_value()
+        customer.order_number = await self.page.locator("#input-v-39").input_value()
+
+        await self.page.locator("span.v-btn__content", has_text="Dados Certificado").click()
+
+        customer.cellphone = await self.page.locator("#input-v-85").input_value()
+        customer.email = await self.page.locator("#input-v-89").input_value()
+        customer.cpf = await self.page.locator("#input-v-75").input_value()
+
+        return customer

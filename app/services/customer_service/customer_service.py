@@ -6,15 +6,16 @@ from app.services.playwright.actions.login_actions import do_login
 class CustomerService:
 
     @staticmethod
-    async def get_customer():
+    async def get_customer(identification_code: str):
         p, browser, context, page = await start_browser()
 
         try:
             await do_login(page)
-            await open_financial_report_page(page)
+            data = await open_financial_report_page(page, identification_code)
 
+            await page.wait_for_timeout(500)
 
-            await page.wait_for_timeout(5000)
+            return data
 
         finally:
             await browser.close()
