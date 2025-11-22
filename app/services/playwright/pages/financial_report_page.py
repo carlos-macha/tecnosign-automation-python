@@ -17,7 +17,9 @@ class FinancialReportPage:
         await item.click()
 
     async def identification_input(self, identification_code: str):
-        await self.page.locator("#input-v-16").fill(identification_code)
+        input_field = self.page.locator("div:has-text('CNPJ/CPF/Nome/Razão') input").first
+        await input_field.wait_for(state="visible")
+        await input_field.fill(identification_code)
 
     async def click_check_button(self):
         await self.page.locator("span:has-text('Consultar') >> ..").click()
@@ -32,16 +34,16 @@ class FinancialReportPage:
         await card.locator("i.fas.fa-info-circle").click()
 
     async def customer_data(self, customer: Customer):
-        customer.name = await self.page.locator("#input-v-53").input_value()
-        customer.cnpj = await self.page.locator("#input-v-51").input_value()
-        customer.soluti_request = await self.page.locator("#input-v-63").input_value()
-        customer.partner = await self.page.locator("#input-v-59").input_value()
-        customer.order_number = await self.page.locator("#input-v-39").input_value()
+        customer.name = await self.page.get_by_label("Cliente:").input_value()
+        customer.cnpj = await self.page.get_by_label("CPF/CNPJ:").input_value()
+        customer.soluti_request = await self.page.get_by_label("Solicitação Soluti:").input_value()
+        customer.partner = await self.page.get_by_label("Parceiro:").input_value()
+        customer.order_number = await self.page.get_by_label("Número Pedido:").input_value()
 
         await self.page.locator("span.v-btn__content", has_text="Dados Certificado").click()
 
-        customer.cellphone = await self.page.locator("#input-v-85").input_value()
-        customer.email = await self.page.locator("#input-v-89").input_value()
-        customer.cpf = await self.page.locator("#input-v-75").input_value()
+        customer.cellphone = await self.page.get_by_label("Celular:").input_value()
+        customer.email = await self.page.get_by_label("Email:").input_value()
+        customer.cpf = await self.page.get_by_label("CPF Rep. Legal:").input_value()
 
         return customer

@@ -17,7 +17,6 @@ pip-wheel-metadata/
 venv/
 ENV/
 env/
-settings.py
 
 # ---------------------
 # PYCHARM / JETBRAINS
@@ -83,3 +82,4 @@ desktop.ini
 
 .idea/
 
+**/settings.py
