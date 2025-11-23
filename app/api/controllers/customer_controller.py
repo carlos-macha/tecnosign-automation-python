@@ -10,7 +10,6 @@ async def get_customers(customer_identification_code: str):
         logger.info(f"Received request for customer ID: {customer_identification_code}")
         data = await CustomerService.get_customer(customer_identification_code)
 
-        # Verifica se algum dado crítico está ausente
         if not data.name or not data.cnpj:
             logger.warning(f"Customer data incomplete for ID: {customer_identification_code}")
             raise HTTPException(
@@ -33,7 +32,6 @@ async def get_customers(customer_identification_code: str):
         }
 
     except HTTPException:
-        # Lança a exceção já formatada acima
         raise
     except Exception:
         logger.exception(f"Unexpected error retrieving customer ID: {customer_identification_code}")
