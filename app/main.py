@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api.controllers.customer_controller import router as customer_router
+from app.api.controllers.customer.customer_controller import router as customer_router
 
 app = FastAPI()
 
